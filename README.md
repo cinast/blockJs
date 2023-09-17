@@ -1,2 +1,2 @@
 # blockJs
-code JS with blocks
+*code JS with blocks*
