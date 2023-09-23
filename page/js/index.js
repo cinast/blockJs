@@ -12,9 +12,24 @@
   使用方法:直接调用,无需参数
   修订历史记录:null
 */
-function view(){
-  let http_view = new XMLHttpRequest;
-  let url_view = "https://pickfish.repl.co/count";
-  http_view.open('GET',url_view);
-  http_view.send();
+function view() {
+    let http_view = new XMLHttpRequest;
+    let url_view = "https://pickfish.repl.co/count";
+    http_view.open('GET', url_view);
+    http_view.send();
+}
+
+/*
+  get_view()
+  开发者:Orangesoft
+  函数说明:调用后可以获得网页浏览量
+  返回说明:
+  使用方法:直接调用,无需参数
+  修订历史记录:null
+*/
+function get_view() {
+    let http_view = new XMLHttpRequest;
+    let url_view = "https://pickfish.repl.co/get_count";
+    http_view.open('GET', url_view);
+    http_view.send();
 }
