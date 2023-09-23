@@ -9,6 +9,7 @@
   view()
   开发者:Orangesoft
   函数说明:调用后使网页后端的记录的浏览量+1
+  返回说明:undefined
   使用方法:直接调用,无需参数
   修订历史记录:null
 */
@@ -23,7 +24,7 @@ function view() {
   get_view()
   开发者:Orangesoft
   函数说明:调用后可以获得网页浏览量
-  返回说明:
+  返回说明:一个int,表示浏览量
   使用方法:直接调用,无需参数
   修订历史记录:null
 */
@@ -32,4 +33,9 @@ function get_view() {
     let url_view = "https://pickfish.repl.co/get_count";
     http_view.open('GET', url_view);
     http_view.send();
+    http_view.onreadystatechange = function() {
+        if (http_view.status == 200 && http_view.DONE){
+          return http_view
+        }
+    }
 }
