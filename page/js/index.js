@@ -146,12 +146,12 @@ function change_avatar(text) {
  * @needs text[str]
  * @returns JSON
  */
-function change_avatar(text) {
+function change_des(text) {
     if (include(text, '<') || include(text, '>') || include(text, "-")) {
         return {
             "success": false,
             "massage": "输入的内容有潜在风险,请删除大于号、小于号横杠等特殊字符后重试"
         }
     }
-    return http_post('POST', server + "/user/change/avatar", text)
+    return http_post('POST', server + "/user/change/des", text)
 }
