@@ -1,3 +1,5 @@
+import "./lib.js"
+
 class module {
     atuthor = ""
     version = ""
