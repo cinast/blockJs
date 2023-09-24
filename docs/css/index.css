@@ -1,7 +1,7 @@
 * {
     border: none;
     padding: none;
-    --theme-color:hsla(200, 80, 10, 0.9)
+    --theme-color: hsla(200, 80, 10, 0.9)
 }
 
 /* #background {
@@ -19,7 +19,7 @@
     position: absolute;
 }
 
-#top {
+#nav {
     position: fixed;
     background: top calc(var(--theme-color));
     width: 100%;
