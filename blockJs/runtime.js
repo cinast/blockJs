@@ -1,5 +1,13 @@
-import "./lib.js";
+import "./lib.js"
 
+class element {
+    /**@type {string} */
+    id = ""
+    type = ""
+    /**@readonly */
+    type_ = ""
+    tag = ""
+}
 class module {
     atuthor = "";
     version = "";
@@ -26,19 +34,18 @@ class block_HTMLrender {
     backgroundColor = "";
 }
 
-class partElement {
+class partElement extends element {
     layer = 0;
-    tag = "";
-    type = "";
+    type_ = "parter"
     content = {};
     constructor() { }
 }
 
-class Layer {
+class Layer extends element {
     name = "";
     /**@readonly */
-    id = "";
-    type = "";
+    type_ = "layer"
+    type = "nomal";
     layerIndex = 0;
     /**@type {partElement[]} */
     content = [];
@@ -48,10 +55,27 @@ class Layer {
         this.id = id();
         this.type = type;
     }
-
-    moveto() { }
-    delete() { }
-    addParters() { }
+    /**
+     * exchange layers
+     * @param {number} index 
+     */
+    moveto(index) {
+        let l = this.parent.style.resLayer
+        l.splice(index, 1, l, splice(this.layerIndex, 1, l[index]))
+    }
+    delete() {
+        l.splice(this.layerIndex, 1)
+    }
+    /**
+     * @param {partElement[]} parter 
+    */
+    addParters(...parter) {
+        let c = true
+        parter.forEach(e => {
+            c = parter[e]?.type_ == "layer"
+        });
+        return c ? this.content.push(...parter) : thorwError()
+    }
     conactLayer() { }
 }
 
@@ -59,13 +83,20 @@ class svgLayer extends Layer {
     type = "svg";
 }
 
-class character {
+class character extends element {
     style = {
         globalSize = 1.00,
         visitable = true,
         rotation = 0.00,
         effects = {},
         /**@type {Layer[]}*/
-       resLayer =[]
+        resLayer =[]
     };
+}
+
+class screen extends element {
+    /**@readonly*/
+    Idnex = 0
+    /**@type {Object<string,character>} */
+    characters = {}
 }

@@ -31,4 +31,13 @@ function id() {
     return r
 }
 
-export {random,id}
+/**
+ * return an error and warn console
+ * @param {string} massage
+ */
+function throwError(massage){
+    console.warn(massage)
+    return new Error(massage)
+}
+
+export {random,id,throwError}
