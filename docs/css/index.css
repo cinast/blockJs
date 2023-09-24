@@ -19,7 +19,7 @@
     position: absolute;
 }
 
-#nav {
+#top {
     position: fixed;
     background-color:calc(var(--theme-color));
     width: 100%;
