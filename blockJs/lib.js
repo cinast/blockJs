@@ -30,3 +30,5 @@ function id() {
     }
     return r
 }
+
+export {random,id}

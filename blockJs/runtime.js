@@ -1,12 +1,12 @@
-import "./lib.js"
+import "./lib.js";
 
 class module {
-    atuthor = ""
-    version = ""
-    introduction = ""
-    updateTime = 0
-    license = ""
-    blockData = {}
+    atuthor = "";
+    version = "";
+    introduction = "";
+    updateTime = 0;
+    license = "";
+    blockData = {};
 }
 
 /*
@@ -17,51 +17,55 @@ class module {
 3. compiled block (program)
 */
 
-class compiled_block {
-
-}
+class compiled_block { }
 
 class block_HTMLrender {
-    themeColor = ""
-    borderWidth = ""
-    borderColor = ""
-    backgroundColor = ""
-
+    themeColor = "";
+    borderWidth = "";
+    borderColor = "";
+    backgroundColor = "";
 }
 
 class partElement {
-    layer = 0
-    tag = ""
-    type = ""
-    content = {}
-    constructor(){
-
-    }
+    layer = 0;
+    tag = "";
+    type = "";
+    content = {};
+    constructor() { }
 }
 
 class Layer {
-    name = ""
-    id = ""
-    layerIndex = 0
+    name = "";
+    /**@readonly */
+    id = "";
+    type = "";
+    layerIndex = 0;
     /**@type {partElement[]} */
-    content = []
-    constructor(){
-        const id = id()
+    content = [];
+    /**@type {character}*/
+    parent;
+    constructor(size, { tag, type = "nomal" }) {
+        this.id = id();
+        this.type = type;
     }
+
+    moveto() { }
+    delete() { }
+    addParters() { }
+    conactLayer() { }
 }
 
-
-class svgLayer extends Layer{
-    type = "svg"
+class svgLayer extends Layer {
+    type = "svg";
 }
-
 
 class character {
-    /**
-     * @type {Layer[]}
-     */
-    style = {}
+    style = {
+        globalSize = 1.00,
+        visitable = true,
+        rotation = 0.00,
+        effects = {},
+        /**@type {Layer[]}*/
+       resLayer =[]
+    };
 }
-
-
-
