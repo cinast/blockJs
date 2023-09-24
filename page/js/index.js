@@ -6,8 +6,8 @@
 */
 
 // -- CONFIG -- 
-var server = "https://pickfish.repl.co"
-    // -- CONFIG -- 
+const server = "https://pickfish.repl.co"
+// -- CONFIG -- 
 
 /** 
  * @by CoderOrangesoft
@@ -22,14 +22,14 @@ function view() {
 
 /**
  * @by CoderOrangesoft
- * @returns JSON
+ * @returns {JSON}
  */
 function get_view() {
     let http_view = new XMLHttpRequest;
     let url_view = server + "/get_count";
     http_view.open('GET', url_view);
     http_view.send();
-    http_view.onreadystatechange = function() {
+    http_view.onreadystatechange = function () {
         if (http_view.status == 200 && http_view.DONE) {
             return http_view.responseText
         }
@@ -38,8 +38,8 @@ function get_view() {
 
 /**
  * @by CoderOrangesoft
- * @needs id[int]
- * @returns JSON
+ * @param {int} id
+ * @returns {JSON}
  */
 function get_user(id) {
     return http_get('GET', server + "/user/info?id=" + id)
@@ -47,7 +47,7 @@ function get_user(id) {
 
 /**
  * @by CoderOrangesoft
- * @returns JSON
+ * @returns {JSON}
  */
 function get_myself() {
     return http_get('GET', server + "/user/myself")
@@ -55,8 +55,8 @@ function get_myself() {
 
 /**
  * @by CoderOrangesoft
- * @needs page[int]
- * @returns JSON
+ * @param {int} page
+ * @returns {JSON}
  */
 function get_forum(page) {
     return http_get('GET', server + "/forum/get?page=" + page)
@@ -64,8 +64,9 @@ function get_forum(page) {
 
 /**
  * @by CoderOrangesoft
- * @needs title[str],content[str]
- * @returns JSON
+ * @param {string} title 
+ * @param {string} content
+ * @returns {JSON}
  */
 function send_forum(title, content) {
     if (include(title, '-') || include(title, '\'') || include(title, '"')) {
@@ -84,8 +85,8 @@ function send_forum(title, content) {
 
 /**
  * @by CoderOrangesoft
- * @needs id[int],content[str]
- * @returns JSON
+ * @param {string} content
+ * @returns {JSON}
  */
 function reply_forum(id, content) {
     if (include(content, '<') || include(content, '>') || include(content, "-")) {
@@ -99,8 +100,9 @@ function reply_forum(id, content) {
 
 /**
  * @by CoderOrangesoft
- * @needs id[int],page[int]
- * @returns JSON
+ * @param {int} id
+ * @param {int} page 
+ * @returns {JSON}
  */
 function get_reply(id, page) {
     return http_get('GET', server + "/forum/reply/get?id=" + id + "&page=" + page)
@@ -108,8 +110,8 @@ function get_reply(id, page) {
 
 /**
  * @by CoderOrangesoft
- * @needs text[str]
- * @returns JSON
+ * @param {string} text
+ * @returns {JSON}
  */
 function change_username(text) {
     if (include(text, '<') || include(text, '>') || include(text, "-")) {
@@ -128,8 +130,8 @@ function change_username(text) {
 
 /**
  * @by CoderOrangesoft
- * @needs text[str]
- * @returns JSON
+ * @param {string} text
+ * @returns {JSON}
  */
 function change_avatar(text) {
     if (include(text, '<') || include(text, '>') || include(text, "-")) {
@@ -143,8 +145,8 @@ function change_avatar(text) {
 
 /**
  * @by CoderOrangesoft
- * @needs text[str]
- * @returns JSON
+ * @param {string} text
+ * @returns {JSON}
  */
 function change_des(text) {
     if (include(text, '<') || include(text, '>') || include(text, "-")) {
