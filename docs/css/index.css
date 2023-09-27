@@ -47,3 +47,8 @@
     background-color: calc(var(--theme-color) - hsla(0,20,20,-0.5));
     border-top: 5px calc(var(--theme-color) - hsla(0,10,10));
 }
+
+#detailboard dt,#detailboard dd,#detailboard{
+    font: 0.5em calc(var(--theme-color)+hsla());
+        
+}
