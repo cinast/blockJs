@@ -9,29 +9,13 @@ class element {
     tag = ""
 }
 class module {
+    name = "";
     atuthor = "";
     version = "";
     introduction = "";
     updateTime = 0;
     license = "";
-    blockData = {};
-}
 
-/*
-3 types block
-
-1.
-2.
-3. compiled block (program)
-*/
-
-class compiled_block { }
-
-class block_HTMLrender {
-    themeColor = "";
-    borderWidth = "";
-    borderColor = "";
-    backgroundColor = "";
 }
 
 class partElement extends element {
@@ -60,7 +44,7 @@ class Layer extends element {
      * @param {number} index 
      */
     moveto(index) {
-        let l = this.parent.style.resLayer
+        let l = this.parent.style.layerset.layers
         l.splice(index, 1, l, splice(this.layerIndex, 1, l[index]))
     }
     delete() {
@@ -84,19 +68,30 @@ class svgLayer extends Layer {
 }
 
 class character extends element {
-    style = {
-        globalSize = 1.00,
-        visitable = true,
-        rotation = 0.00,
-        effects = {},
+    x = .0
+    y = .0
+    globalSize = 1.00
+    visitable = true
+    rotation = 0.00
+    effects = {}
+    layerset = {
         /**@type {Layer[]}*/
-        resLayer =[]
-    };
+        layers: [],
+        addLayer() { },
+    }
+    /**
+     * @param {number} x 
+     * @param {number} y 
+     */
+    moveto(x, y) {
+
+    }
 }
 
-class screen extends element {
+class sense extends element {
     /**@readonly*/
     Idnex = 0
     /**@type {Object<string,character>} */
     characters = {}
+
 }

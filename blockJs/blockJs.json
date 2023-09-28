@@ -1,0 +1,21 @@
+{
+  "name": "blockJs",
+  "version": "1.0.0",
+  "atuthor": "@Inspire",
+  "introduction": "blockJs defult blocks libary",
+  "updateTime": 1000000,
+  "license": "MIT",
+  "blockdata": {
+    "event": {},
+    "action": {},
+    "style": {},
+    "sound": {},
+    "opration": {},
+    "data": {
+        "defines":{},
+        "blocks":{
+
+        }
+    }
+  }
+}
