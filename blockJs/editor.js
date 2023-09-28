@@ -1,5 +1,3 @@
-
-
 /*
 3 types block
 

@@ -1,13 +1,8 @@
-//从一个callback struck开始
+import "/lib/jquery-3.7.1.min.js";
 
-let callback = []
-    /**
-     * @type { {moduleName:module} }
-     */
-let Libary = {}
-
-function run() {
-    for (const c of callback) {
-
-    }
-}
+void (() => {
+    $("").addEventListener()(() => {
+        const s = localStorage
+        s.getItem("") || s.setItem("")
+    })
+})()
