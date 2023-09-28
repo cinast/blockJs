@@ -2,11 +2,33 @@
   页面脚本index.js
 */
 
-import "/lib/";
+import "lib/jquery-3.7.1.min.js";
 
-// -- CONFIG -- 
-const server = "https://pickfish.repl.co"
-// -- CONFIG -- 
+void (() => {
+    // -- CONFIG -- 
+    const server = "https://pickfish.repl.co"
+    // -- CONFIG -- 
+
+    function login() {
+        let data = {
+            account:,
+            tk: $.localStroge("1a5e9b") || ""
+        }
+        $.ajax({
+            url: `${server}/login`,
+            method: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (response) {
+            },
+            error: function (xhr, status, error) {
+
+            }
+        })
+
+    }
+})
+
 
 /** 
  * @by CoderOrangesoft
