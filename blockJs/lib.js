@@ -40,4 +40,4 @@ function throwError(massage){
     return new Error(massage)
 }
 
-export {random,id,throwError}
+exports =  {random,id,throwError}
