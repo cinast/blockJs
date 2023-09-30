@@ -1,3 +1,4 @@
+import { objectExpression } from "@babel/types"
 import "./lib.js"
 
 /**
@@ -10,18 +11,18 @@ export module Blockjs {
         log(massge: any) { },
         warn(massge: any) { }
     }
-    function throwError(massge:string,errorObject?:Error) { }
+    function throwError(massge: string, errorObject?: Error) { }
 
 
-    class element {
+    class basicElement {
         protected _id: string
         public get id() { return this._id }
         public type: string
-        readonly BaseType: string
+        public readonly BaseType: string
         tag: string[] = []
     }
 
-    class eventObjet extends element {
+    class eventObjet extends basicElement {
         BaseType = "eventObject"
         callback: Function
         triged: boolean = false
@@ -33,13 +34,19 @@ export module Blockjs {
         }
     }
 
-    class character extends element {
+    class character extends basicElement {
+        BaseType = "character"
         x: number = .0
         y: number = .0
         name: string = ""
         globalSize: number = 1.00
         visitable: boolean = true
         rotation: number = 0.00
+        isClone: boolean = false
+        cloneNumber: number = 0
+        hasCloned: number = 0
+        clones: clonedCharacter[] = []
+        CloneFrom: character | undefined = undefined
         effects = {}
         layerset: Layer[] = []
         eventList: { id: string, ev: eventObjet }[]
@@ -48,7 +55,15 @@ export module Blockjs {
             this.y = y
         }
         clone() {
-            return
+            this.hasCloned++
+            let cl = new clonedCharacter(this)
+            this.clones.push(cl)
+            return cl
+        }
+        set cloneFrom(char:character|undefined){
+            if(!this.isClone)return
+            if(this.CloneFrom?.BaseType=="character")
+            this.CloneFrom = char
         }
         addEvListener(type: string, callback: Function) {
             let ev = new eventObjet(type, callback)
@@ -62,7 +77,20 @@ export module Blockjs {
         }
     }
 
-    class sense extends element {
+    class clonedCharacter extends character {
+        isClone: boolean = true
+        set cloneFrom(char:character|undefined){
+            if(this.CloneFrom?.BaseType=="character")
+            this.CloneFrom = char
+        }
+        constructor(baseChara: character | clonedCharacter) {
+            super()
+            this.cloneNumber = baseChara.hasCloned
+            this.cloneFrom = baseChara
+        }
+    }
+
+    class sense extends basicElement {
         Idnex = 0
         characters: Record<string, character> = {}
         addCharacter(...character: character[]) {
@@ -70,12 +98,12 @@ export module Blockjs {
                 this.characters = { ...this.characters, [c.name]: c }
             })
         }
-        remove
+        remove(){}
     }
 
 
 
-    class partElement extends element {
+    class partElement extends basicElement {
         layerAt = 0;
         BaseType = "parter"
         content = {};
@@ -84,7 +112,7 @@ export module Blockjs {
         }
     }
 
-    class Layer extends element {
+    class Layer extends basicElement {
         name = "";
         BaseType = "layer"
         type = "nomal";
