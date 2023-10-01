@@ -60,7 +60,7 @@ module Blockjs {
             return cl
         }
         set cloneFrom(char: character | undefined) {
-            if (!this.isClone&&this.CloneFrom?.BaseType !== "character") return new TypeError()
+            if (!this.isClone&&this.CloneFrom?.BaseType !== "character") return
                 this.CloneFrom = char
         }
         addEvListener(type: string, callback: Function) {
