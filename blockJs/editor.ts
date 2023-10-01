@@ -1,4 +1,3 @@
-import { objectExpression } from "@babel/types"
 import "./lib.js"
 
 /**
@@ -6,7 +5,7 @@ import "./lib.js"
  * @author cinast
  * @version unkown-0.{}
  */
-export module Blockjs {
+module Blockjs {
     const Console = {
         log(massge: any) { },
         warn(massge: any) { }
@@ -15,10 +14,10 @@ export module Blockjs {
 
 
     class basicElement {
-        protected _id: string
+        protected _id: string = ""
         public get id() { return this._id }
-        public type: string
-        public readonly BaseType: string
+        public type: string = ""
+        public readonly BaseType: string = ""
         tag: string[] = []
     }
 
@@ -49,7 +48,7 @@ export module Blockjs {
         CloneFrom: character | undefined = undefined
         effects = {}
         layerset: Layer[] = []
-        eventList: { id: string, ev: eventObjet }[]
+        eventList: { id: string, ev: eventObjet }[] = []
         moveto(x: number, y: number) {
             this.x = x
             this.y = y
@@ -60,10 +59,9 @@ export module Blockjs {
             this.clones.push(cl)
             return cl
         }
-        set cloneFrom(char:character|undefined){
-            if(!this.isClone)return
-            if(this.CloneFrom?.BaseType=="character")
-            this.CloneFrom = char
+        set cloneFrom(char: character | undefined) {
+            if (!this.isClone&&this.CloneFrom?.BaseType !== "character") return new TypeError()
+                this.CloneFrom = char
         }
         addEvListener(type: string, callback: Function) {
             let ev = new eventObjet(type, callback)
@@ -79,9 +77,9 @@ export module Blockjs {
 
     class clonedCharacter extends character {
         isClone: boolean = true
-        set cloneFrom(char:character|undefined){
-            if(this.CloneFrom?.BaseType=="character")
-            this.CloneFrom = char
+        set cloneFrom(char: character | undefined) {
+            if (this.CloneFrom?.BaseType == "character")
+                this.CloneFrom = char
         }
         constructor(baseChara: character | clonedCharacter) {
             super()
@@ -98,7 +96,7 @@ export module Blockjs {
                 this.characters = { ...this.characters, [c.name]: c }
             })
         }
-        remove(){}
+        remove() { }
     }
 
 
@@ -111,25 +109,26 @@ export module Blockjs {
             super()
         }
     }
-
+    type layers = "nomal" | "svg" | "filter"
     class Layer extends basicElement {
         name = "";
         BaseType = "layer"
         type = "nomal";
         layerIndex = 0;
         content: partElement[] = [];
-        parent: character
-        constructor(size, { tag, type = "nomal" }) {
+        parent: character | undefined = undefined
+        constructor(size: number, type?: string) {
             super()
             this._id = id();
-            this.type = type;
+            this.type = type || "";
         }
         moveto(index: number) {
+            if (this.parent === undefined) return;
             let l = this.parent.layerset
             l.splice(index, 0, l.splice(this.layerIndex, 1)[0])
         }
         delete() {
-            return this.parent.layerset.splice(this.layerIndex, 1)[0]
+            return this.parent == undefined ? new TypeError : this.parent.layerset.splice(this.layerIndex, 1)[0]
         }
         addParters(...parter: partElement[]) {
             parter.forEach(p => {
@@ -137,10 +136,12 @@ export module Blockjs {
                 else { throwError(`Type error:  type '${p?.BaseType}'`) }
             });
         }
-        conactLayer() { }
+        concatLayer() { }
     }
 
     class svgLayer extends Layer {
         type = "svg";
     }
 }
+
+export default Blockjs
