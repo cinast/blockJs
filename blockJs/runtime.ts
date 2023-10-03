@@ -1,1 +1,2 @@
-import Blockjs from "./editor";
+import * as blockJs from "./editor.ts";
+blockJs.character
