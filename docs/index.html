@@ -22,7 +22,8 @@
 
             #top {
                 position: fixed;
-                background-color: calc(var());
+                background-color: calc(var(--color-secondy));
+                padding: var(--color-secondy-dark);
                 width: 100%;
                 height: 50px;
             }
@@ -47,7 +48,8 @@
             }
 
             #firstboard {
-                background: center url(/cinast/blockJs/blob/main/img/);
+                background: center url(/cinast/blockJs/blob/main/img/) var(--color-primary);
+                border: 0 10px 0 0 var(--color-secondy);
                 top: 400px;
                 height: 800px;
                 width: 80;
@@ -56,14 +58,14 @@
             #webdetail {
                 width: 100%;
                 height: 200px;
-                background-color: calc(var() - hsla(0, 20, 20, -0.5));
-                border-top: 5px calc(var() - hsla(0, 10, 10));
+                background-color: calc(var(--color-secondy-dark) - hsla(0, 20, 20, -0.5));
+                border-top: 5px calc(var(--color-primary-light) - hsla(0, 10, 10));
             }
 
             #detailboard dt,
             #detailboard dd,
             #detailboard {
-                font: 0.5em calc(var()+hsla());
+                font:var(--color-primary-light)+hsl(0,0,30);
             }
         </style>
     </head>
