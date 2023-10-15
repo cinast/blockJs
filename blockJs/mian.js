@@ -1,8 +1,7 @@
-import "/lib/jquery-3.7.1.min.js";
+import "https://github.com/cinast/blockJs/blob/main/blockJs/lib.js"
 
 void (() => {
-    $("").addEventListener()(() => {
-        const s = localStorage
-        s.getItem("") || s.setItem("")
-    })
-})()
+    const ss = sessionStorage
+    const t = random(1e10, 1e11).toString(64);
+    ss.setItem("",t)
+});
