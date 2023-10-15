@@ -6,14 +6,14 @@ import "./lib.js"
  * @version unkown-0.{}
  */
 
-export const Console = {
+ const Console = {
     log(massge: any) { },
     warn(massge: any) { }
 }
-export function throwError(massge: string, errorObject?: Error) { }
+ function throwError(massge: string, errorObject?: Error) { }
 
 
-export class basicElement {
+ class basicElement {
     protected _id: string = ""
     public get id() { return this._id }
     public type: string = ""
@@ -21,7 +21,7 @@ export class basicElement {
     tag: string[] = []
 }
 
-export class eventObjet extends basicElement {
+ class eventObjet extends basicElement {
     BaseType = "eventObject"
     callback: Function
     triged: boolean = false
@@ -33,7 +33,7 @@ export class eventObjet extends basicElement {
     }
 }
 
-export class character extends basicElement {
+ class character extends basicElement {
     BaseType = "character"
     x: number = .0
     y: number = .0
@@ -75,7 +75,7 @@ export class character extends basicElement {
     }
 }
 
-export class clonedCharacter extends character {
+ class clonedCharacter extends character {
     isClone: boolean = true
     set cloneFrom(char: character | undefined) {
         if (this.CloneFrom?.BaseType == "character")
@@ -88,7 +88,7 @@ export class clonedCharacter extends character {
     }
 }
 
-export class sense extends basicElement {
+ class sense extends basicElement {
     Idnex = 0
     characters: Record<string, character> = {}
     addCharacter(...character: character[]) {
@@ -101,7 +101,7 @@ export class sense extends basicElement {
 
 
 
-export class partElement extends basicElement {
+ class partElement extends basicElement {
     layerAt = 0;
     BaseType = "parter"
     content = {};
@@ -109,8 +109,8 @@ export class partElement extends basicElement {
         super()
     }
 }
-export type layers = "nomal" | "svg" | "filter"
-export class Layer extends basicElement {
+ type layers = "nomal" | "svg" | "filter"
+ class Layer extends basicElement {
     name = "";
     BaseType = "layer"
     type = "nomal";
@@ -139,6 +139,6 @@ export class Layer extends basicElement {
     concatLayer() { }
 }
 
-export class svgLayer extends Layer {
+ class svgLayer extends Layer {
     type = "svg";
 }
