@@ -40,4 +40,8 @@ function throwError(massage){
     return new Error(massage)
 }
 
-exports =  {random,id,throwError}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+exports =  {random,id,throwError,sleep}

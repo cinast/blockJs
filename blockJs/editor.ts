@@ -1,3 +1,4 @@
+import { promises } from "dns";
 import "./lib.js";
 /**
  * blockJs editor
@@ -6,29 +7,29 @@ import "./lib.js";
  * @release {Date.UTC}
  */
 
-const editor = document.querySelector("#ediotr_gobal");
-if (!(editor instanceof HTMLDivElement))
-    throw new Error("editor div-cantiner not found");
-
-const canvas = document.querySelector("#ediotr_gobal > #canvas") as HTMLCanvasElement,
-    codeArea = document.querySelector("#ediotr_gobal > #code")
-
-
 
 
 const Console = {
     log(massge: any) { },
     warn(massge: any) { },
 };
+
 function throwError(massge: string, errorObject?: Error) { }
 
+class varable{
+    readonly type :string
+    constructor(type : ){
+        this.type = type 
+    }
+}
+
 class basicElement {
-    protected _id: string = "";
+    id :string
     readonly BaseType: string = "";
     type: string = "";
     tag: string[] = [];
-    get id() {
-        return this._id;
+    constructor(){
+        this.id = id()
     }
 }
 
@@ -38,7 +39,6 @@ class eventObjet extends basicElement {
     triged: boolean = false;
     constructor(type: string, callback: Function) {
         super();
-        this._id = id();
         this.type = type;
         this.callback = callback;
     }
@@ -131,7 +131,6 @@ class Layer extends basicElement {
     parent: character | undefined = undefined;
     constructor(size: number, type?: string) {
         super();
-        this._id = id();
         this.type = type || "";
     }
     moveto(index: number) {
@@ -160,3 +159,9 @@ class svgLayer extends Layer {
     type = "svg";
 }
 
+let workspace = new HTMLDivElement()
+workspace.innerHTML =
+`
+    <div>
+    </div>
+`
