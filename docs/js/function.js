@@ -18,7 +18,7 @@ function http_get(method, url) {
     let http = new XMLHttpRequest;
     http.open(method, url);
     http.send();
-    httponreadystatechange = function() {
+    http.onreadystatechange = function() {
         if (http.DONE) {
             return http.responseText;
         }
@@ -38,7 +38,7 @@ function http_post(method, url, text) {
     http.open(method, url);
     http.withCredentials = cookie;
     http.send(text);
-    httponreadystatechange = function() {
+    http.onreadystatechange = function() {
         if (http.DONE) {
             return http.responseText;
         }
