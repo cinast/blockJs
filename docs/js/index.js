@@ -6,7 +6,7 @@ import "lib/jquery-3.7.1.min.js";
 
 void (() => {
     // -- CONFIG -- 
-    const server = "https://pickfish.repl.co"
+    const server = "https://pickfish-pickfish.replit.app"
     // -- CONFIG -- 
 
     function login() {
@@ -32,27 +32,16 @@ void (() => {
 
 /** 
  * @by CoderOrangesoft
- * @returns {undefined}
+ * @returns {JSON}
  */
 function view() {
     let http_view = new XMLHttpRequest;
-    let url_view = server + "/count";
-    http_view.open('GET', url_view);
+    let url_view = server + "/visit";
+    http_view.open('POST', url_view);
     http_view.send();
-}
-
-/**
- * @by CoderOrangesoft
- * @returns {JSON}
- */
-function get_view() {
-    let http_view = new XMLHttpRequest;
-    let url_view = server + "/get_count";
-    http_view.open('GET', url_view);
-    http_view.send();
-    http_view.onreadystatechange = function () {
-        if (http_view.status == 200 && http_view.DONE) {
-            return http_view.responseText
+    http_view.onreadystatechange = function() {
+        if (http_view.DONE) {
+            return http_view.responseText;
         }
     }
 }
